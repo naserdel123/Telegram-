@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: youtube-telegram-bot
+    runtime: node
+    buildCommand: npm install && npm run postinstall
+    startCommand: npm start
+    envVars:
+      - key: BOT_TOKEN
+        sync: false  # ستضيفها يدوياً في Render
+      - key: NODE_ENV
+        value: production
+    disk:
+      name: downloads
+      mountPath: /opt/render/project/src/downloads
+      sizeGB: 5  # مساحة 5GB للتحميلات
